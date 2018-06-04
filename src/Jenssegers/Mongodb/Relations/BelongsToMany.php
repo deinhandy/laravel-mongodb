@@ -225,6 +225,11 @@ class BelongsToMany extends EloquentBelongsToMany
         // We'll return the numbers of affected rows when we do the deletes.
         $ids = (array) $ids;
 
+        // get all keys if nothing given
+        if (empty($ids)) {
+        	$ids = (array) $this->parent->{$this->relatedPivotKey} ?? [];
+		}
+        
         // Detach all ids from the parent model.
         $this->parent->pull($this->getRelatedKey(), $ids);
 
