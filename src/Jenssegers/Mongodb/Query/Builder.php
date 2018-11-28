@@ -1056,6 +1056,11 @@ class Builder extends BaseBuilder
         return [$column => ['$in' => array_values($values)]];
     }
 
+    protected function compileWhereInRaw(array $where)
+    {
+        return $this->compileWhereIn($where);
+    }
+
     /**
      * @param array $where
      * @return array
